@@ -1,0 +1,65 @@
+//HTML
+<div ng-controller="Radar">
+    Total:<input type="number" ng-model="total"/><br>
+    Horas realizadas: <input type="number" ng-model="horas"/><br>
+    Porcentagem realizda: {{(100 - ((total - horas) / total) * 100)}}%
+  <input type="number" ng-model="divleft"/>
+  <input type="number" ng-model="divtop"/>
+  {{divleft}}, {{divtop}}
+  <div class="examplediv" ng-style="{left: divleft, top: divtop, width: divwidth, height: divheight}" draggable xpos="divleft" ypos="divtop">
+      <span>Ponto</span>
+  </div>
+    <div class="map"></div>
+</div>
+
+//Angular JS
+var myApp = angular.module('myApp', []);
+
+function Radar($scope) {
+  $scope.divwidth = 20;
+  $scope.divheight = 20;
+  $scope.show = true;
+  $scope.divtop = 0;
+  $scope.divleft = 0;
+
+};
+
+myApp.directive('draggable', function () {
+  return {
+    restrict: 'A',
+    link: function (scope, element, attrs) {
+      element.draggable({
+        cursor: "move",
+        stop: function (event, ui) {
+          scope[attrs.xpos] = ui.position.left;
+          scope[attrs.ypos] = ui.position.top;
+          scope.$apply();
+        }
+      });
+    }
+  };
+});
+
+//CSS
+.examplediv {
+  position:absolute;
+  border:solid 3px #ccc;
+  background: #eee;
+  border-radius: 50%;
+}
+
+.examplediv span {
+    padding-left: 24px;
+}
+
+.map {
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    border: 1px solid #000;
+    display: block;
+    top: 0;
+    left: 0;
+}
+
+http://jsfiddle.net/mrajcok/5Mzda/

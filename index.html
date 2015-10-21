@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+    <title>Radar Bytebio</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/app.css" rel="stylesheet">
+</head>
+<body>
+    <div ng-controller="radar">
+          Total:<input type="number" ng-model="total"/><br>
+          Horas realizadas: <input type="number" ng-model="horas"/><br>
+          Porcentagem realizada: {{ result }} %
+
+        <div class="examplediv" ng-style="{left: divleft, top: divtop, width: divwidth, height: divheight}" draggable xpos="divleft" ypos="divtop">
+            <span>Ponto</span>
+        </div>
+          <div class="map"></div>
+    </div>
+
+    <!-- Dependencies -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+
+    <!-- App -->
+    <script type="text/javascript" src="js/app.js"></script>
+
+</body>
+</html>
